@@ -1,7 +1,11 @@
 # See https://github.com/check-spelling/check-spelling/wiki/Configuration-Examples:-excludes
 (?:^|/)(?i)COPYRIGHT
 (?:^|/)(?i)LICEN[CS]E
+<<<<<<< HEAD
 (?:^|/)package(?:-lock|)\.json$
+=======
+(?:^|/)package(?:-lock)\.json$
+>>>>>>> b82a373 (Expand default includes)
 (?:^|/)vendor/
 ignore$
 \.lock$
