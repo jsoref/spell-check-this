@@ -11,4 +11,5 @@ ignore$
 \.lock$
 \.min\.
 \.mod$
-^\.github/
+^\.github/actions/spelling/
+^\.github/workflows/spelling\.yml
