@@ -1,0 +1,9 @@
+deps
+github
+grep
+perl
+src
+sudo
+ubuntu
+usr
+workflow

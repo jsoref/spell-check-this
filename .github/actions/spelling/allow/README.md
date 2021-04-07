@@ -9,6 +9,7 @@ One word per line (only letters and `'`s allowed).
 Each file with the extension `.txt` will be treated as additional content for the dictionary.
 
 * [allow.txt](allow.txt) - is a basic file for additional words
+* [dictionary-workflow.txt](dictionary-workflow.txt) - covers words used by [dictionary.yml](../../../workflows/dictionary.yml) - if you delete that file, you can delete this file.
 
 ## Notes
 

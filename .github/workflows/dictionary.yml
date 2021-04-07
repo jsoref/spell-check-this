@@ -1,0 +1,46 @@
+name: Import dictionary
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: "Ubuntu package to use as seed for dictionary"
+        required: true
+
+jobs:
+  import:
+    name: "Import ${{ github.event.inputs.package }}"
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2.0.0
+      - name: list files (baseline)
+        run: find /usr/include -type f | sort > includes.baseline
+      - name: get build-essential
+        run: sudo apt-get update && sudo apt-get install build-essential
+      - name: enable sources
+        run: sudo perl -pi -e 's/^# deb-src/deb-src/' $(grep -l '# deb-src' /etc/apt/sources.list{,.d*}) && sudo apt-get update
+      - name: show sources
+        run: grep -rn . /etc/apt/sources.list*
+      - name: retrieve build deps
+        run: sudo apt-get build-dep "${{ github.event.inputs.package }}"
+      - name: list files (updated)
+        run: find /usr/include -type f | sort > includes.installed
+      - name: compare files
+        run: wc -l includes.*; diff -U0 includes.baseline includes.installed || true
+      - name: typo
+        run: echo 'tyyyyppppo'
+      - name: check-spelling
+        id: spelling
+        uses: jsoref/check-spelling@prerelease
+        with:
+          post_comment: ""
+          capture_output_unknown_words: "1"
+          capture_output_stale_words: "1"
+          capture_output_skipped_files: "1"
+        continue-on-error: true
+      - name: "skipped"
+        run: echo "skipped"; cat ${{ steps.spelling.output.skipped_files }} || true
+      - name: "unknown"
+        run: echo "unknown"; cat ${{ steps.spelling.output.unknown_words }} || true
+      - name: "stale"
+        run: echo "stale"; cat ${{ steps.spelling.output.stale_words }} || true
