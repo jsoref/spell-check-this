@@ -24,7 +24,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    if: always() && needs.spelling.result == 'failure' && needs.spelling.outputs.artifact_name
+    if: always() && needs.spelling.result == 'failure'
     uses: jsoref/check-spelling/.github/workflows/comment.yml@reusable
     with:
       experimental_apply_changes_via_bot: true
