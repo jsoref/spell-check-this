@@ -38,7 +38,7 @@ jobs:
         post_comment: 0
         debug: 1
     - name: store-comment
-      if: (failure() || steps.spelling.outputs.result_code) && steps.spelling.outputs.internal_state_directory
+      if: always() && steps.spelling.outputs.internal_state_directory
       uses: actions/upload-artifact@v2
       with:
         retention-days: 1
@@ -53,7 +53,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    if: always() && needs.spelling.result == 'failure' && needs.spelling.outputs.internal_state_directory
+    if: always() && needs.spelling.outputs.internal_state_directory
     steps:
     - name: checkout
       uses: actions/checkout@v2
