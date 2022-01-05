@@ -71,6 +71,7 @@ jobs:
         experimental_apply_changes_via_bot: 1
         custom_task: comment
         internal_state_directory: /tmp/data
+        debug: 1
 
   update:
     name: Update PR
