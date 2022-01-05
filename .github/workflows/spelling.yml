@@ -34,9 +34,10 @@ jobs:
       with:
         experimental_apply_changes_via_bot: 1
         suppress_push_for_open_pull_request: 1
+        quit_without_error: 1
         post_comment: 0
     - name: store-comment
-      if: failure() && steps.spelling.outputs.internal_state_directory
+      if: (failure() || steps.spelling.outputs.result_code) && steps.spelling.outputs.internal_state_directory
       uses: actions/upload-artifact@v2
       with:
         retention-days: 1
