@@ -407,7 +407,7 @@
 (?i)(?<=cut the )mustard
 
 # Should be `OAuth`
-(?:^|[^-/*$])[ '"]oAuth(?: [a-z]|\d+ |[^ a-zA-Z0-9:;_.()])
+(?<=(?:^|[^-/*$])[ '"])oAuth(?= [a-z]|\d+ |[^ a-zA-Z0-9:;_.()])
 
 # Should be `pytest`
 # see https://docs.pytest.org/en/stable/
