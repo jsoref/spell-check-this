@@ -450,6 +450,9 @@ CLoud
 # Should be `diffuse`
 (?i)\bdefuse(?= tensions)
 
+# Should be `do`
+(?i)\bdon(?= not\b)
+
 # Should be `drawers`
 (?i)(?<=dresser )draws\b
 
