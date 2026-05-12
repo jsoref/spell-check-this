@@ -462,6 +462,9 @@ CLoud
 # Should be `due`
 (?i)(?<=\bin )do(?= (?:course|time))
 
+# Should be `from`
+(?:^|\s)sync form (?!and|change|control|data|elements|entr|field|from|input|model|response|state|submission|value|when|with)\w{3,}
+
 # Should be `gets`
 \scommand get the\s
 
