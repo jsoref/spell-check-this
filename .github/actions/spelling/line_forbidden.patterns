@@ -554,6 +554,9 @@ CLoud
 # Should be `OAuth`
 \bOauth\b
 
+# Should be `not only` or `no` _punctuation_ +` only`
+\b(?i)no only\b
+
 # Should be `Packing`
 \bPAcking\b
 
