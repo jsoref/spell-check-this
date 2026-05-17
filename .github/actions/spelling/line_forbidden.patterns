@@ -168,7 +168,7 @@
 \b[Pp]lease(?:, do|) also\b
 
 # Should be `an`
-(?<!(?:\b[Ii]|and|but|Frankfurt|git) )(?<![-.])(?<!\d\s?)\bam\b(?!/pm|[-:")]| I\b)
+(?<!(?:\b[Ii]|and|but|Frankfurt|git|\W) )(?<![-.])(?<!\d\s?)\bam\b(?!/pm|[-:")]| I\b)
 
 # Should be `an`
 (?<=\s)a(?= (?:a(?!nd\s|s\s)|e(?!u)|i(?![ns]\s)|o(?!f\b|nc?e)|u(?!\d|biquitous|int|kr|n[ai]|r[ael]|ri\b|s[aeiu]|tf\d*|til|topia|uid|vula|v\b)|y(?!aml|arn|e|ie|oga|oung|y)))
