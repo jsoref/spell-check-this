@@ -478,6 +478,9 @@ integrity=(['"])(?:\s*sha\d+-[-a-zA-Z=;:/0-9+]{40,})+\g{-1}
 # Localized .desktop content
 Name\[[^\]]+\]=.*
 
+# ... as a service
+\b[A-Z]aaS\b
+
 # IServiceProvider / isAThing
 (?:(?:\b|_|(?<=[a-z]))I|(?:\b|_)(?:nsI|isA))(?=(?:[A-Z][a-z]{2,})+(?:[A-Z\d]|\b))
 
