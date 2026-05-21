@@ -139,7 +139,7 @@
 \bafter thought\b
 
 # Should be `and`
-\ban(?= including)
+\ban(?= including(?!-))
 
 # Should be `and not` or `nor`
 \band nor\b
