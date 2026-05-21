@@ -183,7 +183,7 @@
 (?<=\bas well )a\b
 
 # Should be `Ask`
-(?:^|[.?]\s+)As\s+[A-Z][a-z]{2,}\s[^.?]*?(?:how|if|wh\w+)\b
+(?:^|[.?]\s+)As\s+[A-Z][a-z]{2,}\s[^.?"]*?(?:how|if|wh\w+)\b
 
 # Should be `at one fell swoop`
 # and only when talking about killing, not some other completion
