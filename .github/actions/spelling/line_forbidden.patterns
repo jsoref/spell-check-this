@@ -346,6 +346,9 @@
 # https://bmitch.net/blog/2025-08-22-ghrc-appears-malicious/
 \bghrc\.io\b
 
+# Should be `githubusercontent.com`
+\bgithubcontent\.com\b
+
 # Should be `GitHub`
 (?<![&*.]|// |\b(?:from|import|type) )\bGithub\b(?![{()])
 
