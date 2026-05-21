@@ -74,6 +74,8 @@ magnet:[?=:\w]+
 
 # Amazon
 \bamazon\.com/[-\w]+/(?:dp/[0-9A-Z]+|)
+# AWS things
+\b(?:ami|fs|sg|subnet|vpc)-[0-9a-f]+\b
 # AWS ARN
 arn:aws:[-/:\w]+
 # AWS S3
@@ -84,8 +86,6 @@ arn:aws:[-/:\w]+
 \b\w+\.[-0-9a-z]+\.elb\.amazonaws\.com\b
 # AWS SNS
 \bsns\.[-0-9a-z]+.amazonaws\.com/[-\w/&#%_?:=]*
-# AWS VPC
-vpc-\w+
 
 # Azure AD
 \baad\.\w{48}\b
