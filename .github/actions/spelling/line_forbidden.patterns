@@ -748,6 +748,9 @@ CLoud
 # Should be `times`
 (?<=\ba few )time\b
 
+# Should be `... than`
+\b(?:less|more) \w+ then\s
+
 # Should be `that`
 \b[Tt]hat's(?= would)
 
