@@ -349,6 +349,9 @@
 # Should be `githubusercontent.com`
 \bgithubcontent\.com\b
 
+# Should probably be `github.com
+\bgitcom\.com\b
+
 # Should be `GitHub`
 (?<![&*.]|// |\b(?:from|import|type) )\bGithub\b(?![{()])
 
