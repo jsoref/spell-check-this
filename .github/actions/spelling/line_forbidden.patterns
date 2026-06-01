@@ -447,6 +447,9 @@ CLoud
 # Unless talking about a thing named `Covert`
 \b[Cc]overt(?= (?!channel)\w+ to\b)
 
+# Should be `convert`
+(?<=\b[Ww]e )covert\s
+
 # Should be `deprecation warning(s)`
 \b[Dd]epreciation [Ww]arnings?\b
 
