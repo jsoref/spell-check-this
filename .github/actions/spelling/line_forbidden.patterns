@@ -889,6 +889,9 @@ socio-economic
 # Should probably be `temperatures` unless actually talking about thermal drafts (things birds may fly on)
 \bthermals\b
 
+# Should be `there`
+\bthere's(?= might\b)
+
 # Should be `there are` or `they are` (or `they're`)
 (?i)\btheir are\b
 
