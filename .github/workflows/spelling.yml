@@ -119,6 +119,138 @@ jobs:
               "": []
             }
 
+  locales:
+    name: Check for localizations
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+    outputs:
+      go: ${{ steps.supported.outputs.go }}
+      locales: ${{ steps.supported.outputs.matrix }}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+      - name: checkout merge
+        if: github.event.pull_request.number && (contains(github.event_name, 'pull_request'))
+        uses: check-spelling/checkout-merge@162501326ecbc16584b42b58cecadc367ad1bb33
+      - name: find supported localizations
+        id: supported
+        run: |
+          : find supported localizations
+          files=$(mktemp)
+          git ls-files -z > "$files"
+          locales=$(
+            for a in $(find .github/actions/spelling-locales -mindepth 1 -maxdepth 1 -type d ! -name '.*' ! -name 'common'); do
+              a="$a" perl -e '
+                use File::Basename;
+                sub readfile {
+                  my @lines;
+                  open F, q{<}, $_;
+                  while (<F>) {
+                    s/\r\n/\n/;
+                    push @lines, $_;
+                  }
+                  local $f = join "\n", @lines;
+                  $f =~ s/^#.*\r?\n//gm;
+                  $f =~ s/^\s*\r?\n//gm;
+                  $f =~ s/\r\n/\n/gm;
+                  $f =~ s/\n$//;
+                  return $f;
+                }
+                sub readstring {
+                  my @files = glob($_[0]);
+                  my @lines = map readfile, @files;
+                  my $f = join "\n", @lines;
+                  $f =~ s/(.*)\r?\n/(?:$1)|/g;
+                  return $f;
+                }
+                sub QE {
+                  my ($re) = @_;
+                  $re =~ s/\\Q(.*?)\\E/quotemeta($1)/eg;
+                  return $re;
+                }
+                my $a = "$ENV{a}";
+                my $e = QE(readstring("$a/excludes.txt"));
+                $e = q<^$> if $e eq "";
+                my $o = QE(readstring("$a/only.txt"));
+                $o = q<.> if $o eq "";
+                my $found = 0;
+                {
+                  local $/ = "\0";
+                  while (<>) {
+                    chomp;
+                    next if /$e/; next unless /$o/;
+                    $found = 1;
+                    last;
+                  }
+                }
+                if ($found) {
+                  my $b = basename $a;
+                  my $n = $b;
+                  my $r = "$a/README.md";
+                  if (-e $r && open (my $readme, q{<}, $r)) {
+                    my $name = <$readme>;
+                    $name =~ s/^\s*#\s*//;
+                    $name =~ s/\s*$//;
+                    $n = $name if length $name;
+                    close $readme;
+                  }
+                  print qq<{"locale":"$b","name":"Spelling ($n)","path":"$a"}\n>;
+                }
+              ' "$files"
+            done
+          )
+          (
+          if [ -n "$locales" ]; then
+            echo "matrix={\"include\":$(echo "$locales" | jq -c -s)}"
+            echo go=1
+          fi
+          ) | tee -a "$GITHUB_OUTPUT"
+
+  spelling-localizations:
+    needs:
+    - locales
+    strategy:
+      fail-fast: false
+      matrix: ${{ needs.locales.outputs.locales && fromJson(needs.locales.outputs.locales) }}
+    runs-on: ubuntu-latest
+    name: ${{ matrix.name }}
+    permissions:
+      contents: read
+      pull-requests: read
+      actions: read
+      security-events: write
+    if: ${{ needs.locales.outputs.go }}
+    steps:
+      - uses: check-spelling/check-spelling@prerelease
+        with:
+          config: ${{ matrix.path }}
+          use_sarif: 1
+          checkout: true
+          report_title_suffix: ${{ matrix.locale }}
+          load-config-from: |
+            {
+              "pr-base-keys": [
+                "dictionary_url",
+                "check_extra_dictionaries",
+                "dictionary_source_prefixes",
+                "extra_dictionaries",
+                "ignore-pattern",
+                "upper-pattern",
+                "lower-pattern",
+                "not-lower-pattern",
+                "not-upper-or-lower-pattern",
+                "punctuation-pattern",
+                "allow-hunspell",
+                ""
+              ],
+              "pr-trusted-keys": [
+                ""
+              ],
+              "": []
+            }
+
   update:
     name: Update PR
     permissions:
