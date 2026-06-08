@@ -281,6 +281,9 @@
 # Alt text should be short
 \balt=(?:'[^']{126,}'|"[^"]{126,}")
 
+# Should be `choose`
+(?<=\bcan )chose\b
+
 # Should be either of `default` or `fallback`, but not both
 # Unless you have a non-default fallback, but that's just weird.
 \bdefault fallback\b
