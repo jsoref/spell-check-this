@@ -412,6 +412,9 @@
 # Should be `Microsoft`
 \bMicroSoft\b
 
+# Should be `misled`
+(?<=\bwas )mislead\b
+
 # Should be `muster`
 (?i)(?<=cut the )mustard
 
