@@ -342,6 +342,9 @@
 # Should be `fell`
 (?i)\bfoul(?= swoop)
 
+# Should be `first`
+\bfist(?= pass\b)
+
 # Should be `for`, `for, to` or `to`
 \b(?:for to|(?<!\bup |-)to for)\b
 
