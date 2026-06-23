@@ -297,6 +297,9 @@
 # Should be `dryer`
 (?i)(?<=\ba clothes )drier\b
 
+# Should be `dump` (or `thumb`...)
+(?i)\bdumb(?= of (?!you|him|her)[a-z]{3,}\b)
+
 # Should be `effect`
 (?<=\btake )affect\b
 
