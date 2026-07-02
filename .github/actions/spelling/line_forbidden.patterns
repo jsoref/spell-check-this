@@ -126,6 +126,9 @@
 # Should only be one of `a`, `an`, or `the`
 \b(?:(?:a(?! (?:la carte|priori|posteriori))n?|the)\s+){2,}\b
 
+# Should be `an`
+(?<=\sexecute )and(?= invalid\s)
+
 # Should be `a large amount` or `large amounts`
 (?<=\bof )large amount(?= of data\b)
 
