@@ -770,7 +770,7 @@ W/"[^"]+"
 # ignore long runs of a single character:
 \b([A-Za-z])\g{-1}{3,}\b
 
-# version suffix <word>v#
+# version suffix {word}v#
 (?:(?<=[A-Z]{2})V|(?<=[a-z]{2}|[A-Z]{2})v)\d+(?:\b|(?=[a-zA-Z_]))
 
 # Compiler flags (Unix, Java/Scala)
