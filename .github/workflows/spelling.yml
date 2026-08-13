@@ -1,7 +1,7 @@
 name: Check Spelling
 
 # Comment management is handled through a secondary job, for details see:
-# https://github.com/check-spelling/check-spelling/wiki/Feature%3A-Restricted-Permissions
+# https://docs.check-spelling.dev/Feature:-Restricted-Permissions
 #
 # Note that jobs.spelling.name here must match an entry in on.workflow_run.workflows[] there.
 
