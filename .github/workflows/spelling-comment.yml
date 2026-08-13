@@ -1,7 +1,7 @@
 name: Check Spelling (Comment)
 
 # Comment management is handled through a secondary workflow, for details see:
-# https://github.com/check-spelling/check-spelling/wiki/Feature%3A-Restricted-Permissions
+# https://docs.check-spelling.dev/Feature:-Restricted-Permissions
 #
 # `jobs.comment-push` runs when a push is made to a repository and the `jobs.spelling` job needs to make a comment
 #   (in odd cases, it might actually run just to collapse a comment, but that's fairly rare)
